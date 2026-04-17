@@ -1,18 +1,23 @@
 //Завдання 8. HTTP-запити (файл task-8.ts)
 //Функція fetchPosts робить GET-запит до API та повертає список постів.
 
-// import axios from "axios";
+import axios from "axios";
 
-// async function fetchPosts() {
-//   const response = await axios.get(
-//     "https://jsonplaceholder.typicode.com/posts",
-//   );
-//   return response.data;
-// }
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+async function fetchPosts(postsId: number): Promise<Post[]> {
+  const response = await axios.get<Post[]>(
+    `https://jsonplaceholder.typicode.com/posts/${postsId}`,
+  );
+  return response.data;
+}
 
-// fetchPosts().then((posts) => {
-//   console.log(posts[0].title);
-// });
+fetchPosts(1).then((posts) => {
+  console.log(posts[0].title);
+});
 
 //Завдання:
 
